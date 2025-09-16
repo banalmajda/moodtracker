@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.card-border-gradient {
+  position: relative;
+  width: 300px;
+  height: auto;
+  padding: 4px;
+  /* Lebar border */
+  background: linear-gradient(to top right, transparent 50%, #4caf50 50%) top
+      right,
+    /* Bagian kanan atas */
+      linear-gradient(to bottom left, transparent 50%, #4caf50 50%) bottom left,
+    /* Bagian kiri bawah */ linear-gradient(to right, #fff, #fff) top center,
+    /* Sisa border */ linear-gradient(to right, #fff, #fff) bottom center,
+    linear-gradient(to bottom, #fff, #fff) left center,
+    linear-gradient(to bottom, #fff, #fff) right center;
+  background-repeat: no-repeat;
+  background-size: 50% 50%, 50% 50%, 100% 2px, 100% 2px, 2px 100%, 2px 100%;
+  background-origin: border-box;
+  border-radius: 12px;
+}
