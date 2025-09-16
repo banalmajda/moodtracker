@@ -3,7 +3,7 @@ import Button from "../ui/Button.jsx";
 export default function Hero() {
   return (
     <main className="bg-[#D8E8DB]">
-      <Container className="flex flex-row justify-between max-h-[80vh] rounded-lg px-28 ">
+      <Container className="flex flex-row justify-between max-h-[80vh] rounded-lg px-28 pt-20">
         <div className="w-full  gap-8  flex flex-col justify-between  rounded-bl-lg  p-6  bg-[#D8E8DB]">
           <h1 className="text-5xl font-bold leading-tight">
             <span className="text-[#DE946E]">
