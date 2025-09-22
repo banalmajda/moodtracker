@@ -11,7 +11,7 @@ export default function Reason() {
         </h1>
       </div>
 
-      <div className="mt-10 flex  justify-between items-center">
+      <div className=" flex  justify-between items-center my-10">
         <Card>
           <HeaderCard>
             <IconReason>
