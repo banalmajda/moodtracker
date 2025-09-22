@@ -1,188 +1,119 @@
 import React, { useState, useEffect } from "react";
-
-const benefits = [
+import Container from "../layout/Container.jsx";
+import IconBenefit, {
+  Awareness,
+  Manage,
+  Build,
+  Become,
+} from "../icons/IconBenefit.jsx";
+const slidesData = [
   {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        className="w-12 h-12 text-blue-500"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M10 20.25c0 .354-.42 3.75-2.25 3.75s-2.25-3.75-2.25-3.75M16 20.25c0 .354-.42 3.75-2.25 3.75s-2.25-3.75-2.25-3.75M6.75 16.5c-3.795-1.423-6.75-3.923-6.75-6.75 0-3.328 4.721-6 10.5-6s10.5 2.672 10.5 6c0 2.827-2.955 5.327-6.75 6.75M12 9v6m0-3h3m-3 0h-3"
-        />
-      </svg>
-    ),
-    title: "Meningkatkan Kesadaran Emosional",
+    icon: <Awareness />,
+    title: "Boost Emotional Awareness",
     description:
-      "Membantu Anda menjadi lebih selaras dengan perasaan dan memahami alasannya.",
+      "Helps you become more in tune with your feelings and understand why they arise.",
   },
   {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        className="w-12 h-12 text-green-500"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9.52 3.29a2.5 2.5 0 011.83.693l6.58 6.58a2.5 2.5 0 010 3.535L15 20.535A2.5 2.5 0 0111.465 24H2.5A2.5 2.5 0 010 21.5V13.5a2.5 2.5 0 01.695-1.83l6.58-6.58a2.5 2.5 0 013.535 0zM12 11a1 1 0 100-2 1 1 0 000 2z"
-        />
-      </svg>
-    ),
-    title: "Kelola Stres dan Kecemasan",
+    icon: <Manage />,
+    title: "Manage Stress and Anxiety",
     description:
-      "Dengan memahami pemicu, Anda dapat mengambil langkah proaktif untuk mengelola atau menghindari situasi penyebab stres.",
+      "By understanding your triggers, you can take proactive steps to manage or avoid situations that cause stress.",
   },
   {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        className="w-12 h-12 text-yellow-500"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 21.5a9.5 9.5 0 100-19 9.5 9.5 0 000 19zM12 16.5v-4.5m0 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12 7.5v-2m0 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-        />
-      </svg>
-    ),
-    title: "Bangun Kebiasaan Positif",
+    icon: <Build />,
+    title: "Build Positive Habits",
     description:
-      "Mendorong refleksi diri dan membantu Anda fokus pada hal-hal yang membuat Anda merasa baik.",
+      "Encourages self-reflection and helps you focus on things that make you feel good.",
   },
   {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        className="w-12 h-12 text-purple-500"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 21.75c-3.328 0-6.27-.582-8.5-1.725a.75.75 0 01-.25-.75c0-.495.27-.923.75-1.25a6 6 0 014.5-2.25c.875 0 1.625.125 2.25.375s1.25.625 1.75 1.125c.5.5.875 1.125 1.125 1.75s.375 1.375.375 2.25a6 6 0 01-2.25 4.5c-.327.48-.75.75-1.25.75a.75.75 0 01-.75-.25c-1.143-2.23-1.725-5.172-1.725-8.5M12 9a6 6 0 100-12 6 6 0 000 12z"
-        />
-      </svg>
-    ),
-    title: "Menjadi Versi Diri yang Lebih Baik",
+    icon: <Become />,
+    title: "Become a Better Version of Yourself",
     description:
-      "Dengan wawasan yang Anda dapatkan, Anda dapat membuat pilihan yang lebih baik untuk kesehatan mental dan kualitas hidup secara keseluruhan.",
+      "With the insights you get, you can make better choices for your mental health and overall quality of life.",
   },
 ];
 
-const BenefitSlider = () => {
+const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slideDuration = 5000; // 5 detik
 
-  // Mengatur slider otomatis
+  // Efek untuk slider otomatis
   useEffect(() => {
-    const slideInterval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % benefits.length);
-    }, slideDuration);
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slidesData.length);
+    }, 3000); // Ganti slide setiap 3 detik
 
-    // Membersihkan interval saat komponen di-unmount
-    return () => clearInterval(slideInterval);
+    return () => clearInterval(interval); // Membersihkan interval saat komponen di-unmount
   }, []);
 
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
   const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % benefits.length);
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % slidesData.length);
   };
 
   const prevSlide = () => {
     setCurrentSlide(
-      (prevSlide) => (prevSlide - 1 + benefits.length) % benefits.length
+      (prevSlide) => (prevSlide - 1 + slidesData.length) % slidesData.length
     );
   };
 
-  const calculateTransform = () => {
-    return `translateX(-${currentSlide * 100}%)`;
-  };
-
   return (
-    <div className="container mx-auto max-w-4xl py-12">
-      <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
-        Manfaat untuk Pengguna
-      </h1>
-
-      <div className="relative slider-container rounded-xl shadow-lg overflow-hidden">
-        <div
-          id="slider"
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: calculateTransform() }}
-        >
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className="min-w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 gap-6 p-6"
-            >
-              <div className="bg-white rounded-xl p-6 flex flex-col items-center text-center shadow-sm">
-                <div className="w-16 h-16 flex items-center justify-center mb-4">
-                  {benefit.icon}
-                </div>
-                <h2 className="text-xl font-semibold text-gray-800 mb-2">
-                  {benefit.title}
-                </h2>
-                <p className="text-gray-600 text-sm">{benefit.description}</p>
+    <Container className="px-28 mt-10">
+      <div className="p-6 ">
+        <h1 className="text-4xl text-center font-bold text-[#1D493C]">
+          Benefits for Users
+        </h1>
+        <div className="relative w-full flex flex-col justify-between rounded-2xl shadow-xl p-6 my-8">
+          {/* Container Slide */}
+          <div className="w-full h-full flex items-center justify-center p-4">
+            <div className="text-center transition-opacity duration-700 ease-in-out">
+              <div className="flex justify-center mb-4">
+                {slidesData[currentSlide].icon}
               </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#DE946E] mb-2">
+                {slidesData[currentSlide].title}
+              </h2>
+              <p className="text-sm md:text-base text-gray-600">
+                {slidesData[currentSlide].description}
+              </p>
             </div>
-          ))}
+          </div>
+
+          {/* Tombol Navigasi */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-200/50 hover:bg-gray-300/75 text-gray-700 rounded-r-lg p-3 transition-colors duration-300 z-10"
+            aria-label="Previous Slide"
+          >
+            &#10094;
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-200/50 hover:bg-gray-300/75 text-gray-700 rounded-l-lg p-3 transition-colors duration-300 z-10"
+            aria-label="Next Slide"
+          >
+            &#10095;
+          </button>
+
+          {/* Titik Indikator */}
+          <div className="flex justify-center mt-4 space-x-2">
+            {slidesData.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                  currentSlide === index ? "bg-gray-800" : "bg-gray-400"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
-
-        <button
-          onClick={prevSlide}
-          className="slider-button absolute top-1/2 left-4 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-
-        <button
-          onClick={nextSlide}
-          className="slider-button absolute top-1/2 right-4 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
       </div>
-    </div>
+    </Container>
   );
 };
 
-export default BenefitSlider;
+export default Slider;
