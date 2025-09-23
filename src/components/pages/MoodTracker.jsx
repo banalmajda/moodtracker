@@ -102,8 +102,23 @@ const MoodTracker = () => {
     return counts;
   }, {});
 
+  // Ganti bagian ini:
+  // const sortedMoods = Object.entries(moodCounts).sort(([, a], [, b]) => b - a);
+
+  // Dengan kode baru di bawah ini:
+  const allMoodsWithCounts = Object.entries(emojiMap).map(
+    ([emotion, emoji]) => {
+      const count = moodCounts[emotion] || 0;
+      return {
+        emotion,
+        emoji,
+        count,
+      };
+    }
+  );
+
+  const sortedMoods = allMoodsWithCounts.sort((a, b) => b.count - a.count);
   // Sort mood counts from highest to lowest
-  const sortedMoods = Object.entries(moodCounts).sort(([, a], [, b]) => b - a);
 
   // Generate month and year options
   const months = [
@@ -236,13 +251,17 @@ const MoodTracker = () => {
                   ))}
                 </select>
               </div>
+
               {/* Mood Overview */}
               <div className="flex space-x-2">
-                {sortedMoods.map(([emotion, count]) => (
-                  <div key={emotion} className="flex items-center space-x-1">
-                    <span className="text-xl">{emojiMap[emotion]}</span>
+                {sortedMoods.map((mood) => (
+                  <div
+                    key={mood.emotion}
+                    className="flex items-center space-x-1"
+                  >
+                    <span className="text-xl">{mood.emoji}</span>
                     <span className="text-sm font-semibold text-gray-700">
-                      {count}
+                      {mood.count}
                     </span>
                   </div>
                 ))}
