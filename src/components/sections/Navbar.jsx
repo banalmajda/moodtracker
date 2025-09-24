@@ -4,10 +4,21 @@ import Button from "../ui/Button.jsx";
 
 export default function Navbar() {
   return (
-    <nav className=" fixed right-0 left-0 top-0 z-10 bg-[#D8E8DB] shadow-md">
+    <nav className=" fixed right-0 left-0 top-0 z-12 bg-[#D8E8DB] shadow-md">
       <Container>
         <div className=" flex justify-between items-center w-full py-4">
-          <img className="h-10" src="/auntenticme.png" alt="logo" />
+          <img
+            className="h-8 md:h-10 hidden min-[425px]:block"
+            src="/auntenticme.png"
+            alt="logo"
+          />
+
+          {/* mobile */}
+          <img
+            className="h-8 block min-[425px]:hidden"
+            src="logo-bunga.png"
+            alt="logo"
+          />
           <ul className="flex items-center gap-6 ">
             <li>
               <Link to="/" className="hover:text-[#DE946E]">
