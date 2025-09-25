@@ -4,11 +4,7 @@ import Button from "../ui/Button.jsx";
 
 export default function Navbar() {
   return (
-<<<<<<< HEAD
-    <nav className=" fixed right-0 left-0 top-0 z-11 bg-[#D8E8DB] shadow-md">
-=======
     <nav className=" fixed right-0 left-0 top-0 z-12 bg-[#D8E8DB] shadow-md">
->>>>>>> fefbe4747346ed7ad352918ccf16b48727b99182
       <Container>
         <div className=" flex justify-between items-center w-full py-4">
           <img
