@@ -70,58 +70,58 @@ const Slider = () => {
 
   // Render komponen utama setelah data berhasil di-fetch
   return (
-    <main className="bg-[#D8E8DB]">
-      <Container className="flex flex-row justify-between max-h-[80vh] rounded-lg px-28 pt-20">
-        <div className="w-full gap-8 flex flex-col justify-between rounded-bl-lg p-6 bg-[#D8E8DB]">
-          <h1 className="text-5xl font-bold leading-tight">
+    <main className="bg-[#D8E8DB] relative overflow-hidden">
+      <Container className="flex flex-col md:flex-row justify-center md:justify-between items-center md:min-h-[80vh] rounded-lg px-4 md:px-8 lg:px-28 pt-20 md:pt-20">
+        <div className="w-full gap-4 md:gap-8 flex flex-col justify-between rounded-bl-lg p-4 md:p-6 bg-[#D8E8DB] text-center md:text-left">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
             <span className="text-[#DE946E]">
               {apiSlidesData[currentSlide]?.title1}
               <br />
             </span>
             {apiSlidesData[currentSlide]?.title2}
           </h1>
-          <p className="text-lg text-gray-700">
+          <p className="text-sm md:text-base lg:text-lg text-gray-700">
             {apiSlidesData[currentSlide]?.description}
           </p>
-          <div>
+          <div className="flex justify-center md:justify-start">
             <Button>
               <a href="/tracking">{apiSlidesData[currentSlide]?.text_button}</a>
             </Button>
           </div>
         </div>
 
-        <div className="bg-[#D8E8DB] w-full">
+        <div className="bg-[#D8E8DB] w-full p-4 flex justify-center">
           <img
-            className="h-full w-auto p-4"
+            className="h-auto w-full md:w-auto md:h-full max-w-sm md:max-w-none"
             src={apiSlidesData[currentSlide]?.image}
             alt="Hero Image"
           />
         </div>
       </Container>
 
-      {/* Tombol Navigasi dan Indikator */}
+      {/* Navigation Buttons and Indicators */}
       <button
         onClick={prevSlide}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-200/50 hover:bg-gray-300/75 text-gray-700 rounded-r-lg p-3 transition-colors duration-300 z-10"
+        className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-gray-200/50 hover:bg-gray-300/75 text-gray-700 rounded-r-lg p-2 md:p-3 transition-colors duration-300 z-10"
         aria-label="Previous Slide"
       >
         &#10094;
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-200/50 hover:bg-gray-300/75 text-gray-700 rounded-l-lg p-3 transition-colors duration-300 z-10"
+        className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-gray-200/50 hover:bg-gray-300/75 text-gray-700 rounded-l-lg p-2 md:p-3 transition-colors duration-300 z-10"
         aria-label="Next Slide"
       >
         &#10095;
       </button>
 
-      {/* Titik Indikator */}
-      <div className="flex justify-center mt-4 space-x-2">
+      {/* Dot Indicators */}
+      <div className="flex justify-center mt-4 space-x-2 pb-8 md:pb-0">
         {apiSlidesData.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+            className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors duration-300 ${
               currentSlide === index ? "bg-gray-800" : "bg-gray-400"
             }`}
             aria-label={`Go to slide ${index + 1}`}
