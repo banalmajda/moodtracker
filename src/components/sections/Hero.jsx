@@ -13,7 +13,7 @@ const Slider = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjbOFXpmpJDdxpCJ-63u6EMg0JAI6FuwbCHnBDV1E4DMUlrA4L_n5zGtVZ8bnxeZc3rkVfxm8kio0lAdwHst3vOdNXOkvFcKHQjjTrJlsONdkmaT00E-GG7HI7J67wc1O4xhgKihHMn_h8iFZJfp7nRQ5tuTbMFJANbHEXAVtvIJne5DSRbMtZgcbacYXi4ncbx4cfh6emhF3jTgDH4w2_ZDlBE5-xF54lccb7b-29bgRCIuWH0KshXVx65HvbyVem-8FsY358TPXzooMl7XSNBhG_QvA&lib=MC9sYDab5ybat5xYkyiKN_5lu8m0d5vP9"
+          "https://script.google.com/macros/s/AKfycbxJtCLaOm7XXfgsnte2T1JmAkR5PgdaheuITC1SSx0QLW40wCT5krHezRnremGy11xxNQ/exec"
         ); // Ganti dengan URL API Anda
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -70,16 +70,15 @@ const Slider = () => {
 
   // Render komponen utama setelah data berhasil di-fetch
   return (
-    <main className="bg-[#D8E8DB] relative">
+    <main className="bg-[#D8E8DB]">
       <Container className="flex flex-row justify-between max-h-[80vh] rounded-lg px-28 pt-20">
         <div className="w-full gap-8 flex flex-col justify-between rounded-bl-lg p-6 bg-[#D8E8DB]">
           <h1 className="text-5xl font-bold leading-tight">
             <span className="text-[#DE946E]">
-              {apiSlidesData[currentSlide]?.title}
-              {/* {apiSlidesData[currentSlide]?.title1} */}
+              {apiSlidesData[currentSlide]?.title1}
               <br />
-              {/* {apiSlidesData[currentSlide]?.title2} */}
             </span>
+            {apiSlidesData[currentSlide]?.title2}
           </h1>
           <p className="text-lg text-gray-700">
             {apiSlidesData[currentSlide]?.description}
