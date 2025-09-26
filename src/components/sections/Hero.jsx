@@ -40,10 +40,6 @@ const Slider = () => {
     }
   }, [apiSlidesData]); // Bergantung pada apiSlidesData
 
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
-
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % apiSlidesData.length);
   };
@@ -70,9 +66,9 @@ const Slider = () => {
 
   // Render komponen utama setelah data berhasil di-fetch
   return (
-    <main className="bg-[#D8E8DB] relative overflow-hidden">
-      <Container className="flex flex-col md:flex-row justify-center md:justify-between items-center md:min-h-[80vh] rounded-lg px-4 md:px-8 lg:px-28 pt-20 md:pt-20">
-        <div className="w-full gap-4 md:gap-8 flex flex-col justify-between rounded-bl-lg p-4 md:p-6 bg-[#D8E8DB] text-center md:text-left">
+    <main className="bg-[#D8E8DB] ">
+      <Container className="flex flex-col md:flex-row justify-center  md:justify-between md:items-stretch md:min-h-[80vh] rounded-lg px-4 md:px-8 lg:px-28 pt-20 md:pt-20">
+        <div className="w-full min-[425px]:min-h-[300px]  gap-4 md:gap-8 flex flex-col justify-between items-stretch rounded-bl-lg p-4 md:p-6 bg-[#D8E8DB] text-center md:text-left">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
             <span className="text-[#DE946E]">
               {apiSlidesData[currentSlide]?.title1}
@@ -90,9 +86,9 @@ const Slider = () => {
           </div>
         </div>
 
-        <div className="bg-[#D8E8DB] w-full p-4 flex justify-center">
+        <div className="bg-[#D8E8DB] w-full p-6 flex justify-center items-center">
           <img
-            className="h-auto w-full md:w-auto md:h-full max-w-sm md:max-w-none"
+            className="h-auto w-full md:w-[500px] md:h-[400px]  object-contain"
             src={apiSlidesData[currentSlide]?.image}
             alt="Hero Image"
           />
@@ -114,20 +110,6 @@ const Slider = () => {
       >
         &#10095;
       </button>
-
-      {/* Dot Indicators */}
-      <div className="flex justify-center mt-4 space-x-2 pb-8 md:pb-0">
-        {apiSlidesData.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors duration-300 ${
-              currentSlide === index ? "bg-gray-800" : "bg-gray-400"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
     </main>
   );
 };
