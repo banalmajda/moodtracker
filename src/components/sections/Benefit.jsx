@@ -60,9 +60,9 @@ const Slider = () => {
   };
 
   return (
-    <Container className="px-28 mt-10">
+    <Container className="px-4 sm:px-10 lg:px-28 mt-10">
       <div className="p-6 ">
-        <h1 className="text-4xl text-center font-bold text-[#1D493C]">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl text-center font-bold text-[#1D493C]">
           Benefits for Users
         </h1>
         <div className="relative w-full flex flex-col justify-between rounded-2xl shadow-xl p-6 my-8">
@@ -72,7 +72,7 @@ const Slider = () => {
               <div className="flex justify-center mb-4">
                 {slidesData[currentSlide].icon}
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#DE946E] mb-2">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#DE946E] mb-2">
                 {slidesData[currentSlide].title}
               </h2>
               <p className="text-sm md:text-base text-gray-600">
