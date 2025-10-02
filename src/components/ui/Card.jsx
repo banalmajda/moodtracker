@@ -1,9 +1,11 @@
-export function Card({ children }) {
+export function Card({ children, className }) {
   return (
-    <div className=" card-border-gradient">
-      <div className="bg-white   w-full min-h-[300px]  justify-start flex flex-col  rounded-lg p-6 shadow hover:shadow-lg hover:bg-amber-600 tsition-all cursor-pointer  ">
-        {children}
-      </div>
+    <div
+      className={`group bg-white w-full min-h-[300px] justify-start flex flex-col 
+      rounded-lg p-6 shadow hover:bg-[#DE946E] hover:text-[#fff] transition-all duration-300 
+      cursor-pointer text-gray-800 ${className}`}
+    >
+      {children}
     </div>
   );
 }
@@ -15,7 +17,14 @@ export function HeaderCard({ children }) {
 
 // content card
 export function ContentCard({ children }) {
-  return <div className="text-[16px] font-bold mb-2 ">{children}</div>;
+  return (
+    <div
+      className="text-[16px] font-bold mb-2 text-[#DE946E]  group-hover:text-white 
+ "
+    >
+      {children}
+    </div>
+  );
 }
 
 // footer card
