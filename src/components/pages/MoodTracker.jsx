@@ -169,24 +169,43 @@ const MoodTracker = () => {
           </div>
 
           {/* Mood Input Section */}
-          <div className="mb-6">
-            <h2 className="text-lg font-semibold text-gray-600 mb-2">
-              How are you feeling today?
-            </h2>
-            <div className="flex justify-between">
+          <div className="flex justify-between">
+            {/* Container yang membungkus semua emoji */}
+            <div
+              className="
+            flex 
+            justify-center 
+            gap-2 
+            w-full           /* Ambil lebar penuh di mobile */
+            sm:gap-3         /* Spasi sedikit lebih besar di tablet */
+            md:gap-4         /* Spasi standar di desktop */
+        "
+            >
               {Object.entries(emojiMap).map(([emotion, emoji]) => (
                 <div
                   key={emotion}
-                  title={emotion} // Tooltip added here
+                  title={emotion}
                   className={`
-                                    w-14 h-14 rounded-full flex items-center justify-center text-3xl cursor-pointer transition-transform duration-200
-                                    ${emotionColors[emotion]}
-                                    ${
-                                      selectedEmotion === emotion
-                                        ? "ring-4 ring-blue-500 scale-110"
-                                        : "hover:scale-110"
-                                    }
-                                `}
+                    /* UKURAN DEFAULT (MOBILE) */
+                    w-10 h-10 text-2xl     /* Ukuran lebih kecil untuk mobile agar muat 5-6 emoji */
+                    sm:w-12 sm:h-12 sm:text-3xl /* Ukuran sedang di tablet */
+                    md:w-14 md:h-14 md:text-3xl /* Ukuran besar di desktop */
+
+                    rounded-full 
+                    flex 
+                    items-center 
+                    justify-center 
+                    cursor-pointer 
+                    transition-transform 
+                    duration-200
+                    
+                    ${emotionColors[emotion]}
+                    ${
+                      selectedEmotion === emotion
+                        ? "ring-4 ring-blue-500 scale-110"
+                        : "hover:scale-110"
+                    }
+                `}
                   onClick={() => setSelectedEmotion(emotion)}
                 >
                   {emoji}
