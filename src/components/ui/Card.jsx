@@ -2,8 +2,10 @@ export function Card({ children, className }) {
   return (
     <div
       className={`group bg-white w-full min-h-[300px] justify-start flex flex-col 
-      rounded-lg p-6 shadow hover:bg-[#DE946E] hover:text-[#fff] transition-all duration-300 
-      cursor-pointer text-gray-800 ${className}`}
+      rounded-lg p-6 shadow  hover:bg-[#DE946E] hover:text-[#fff] 
+        active:bg-[#DE946E] active:text-[#fff]
+        focus:bg-[#DE946E] focus:text-[#fff] transition-all duration-300 
+      cursor-pointer  text-gray-800 ${className}`}
     >
       {children}
     </div>
