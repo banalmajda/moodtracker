@@ -21,7 +21,10 @@ export default function Navbar() {
           />
           <ul className="flex items-center gap-6 ">
             <li>
-              <Link to="/" className="hover:text-[#DE946E]">
+              <Link
+                to="/"
+                className="hover:text-[#DE946E] active:text-[#DE946E]"
+              >
                 Home
               </Link>
             </li>

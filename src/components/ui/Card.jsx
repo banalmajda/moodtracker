@@ -19,7 +19,7 @@ export function HeaderCard({ children }) {
 export function ContentCard({ children }) {
   return (
     <div
-      className="text-[16px] font-bold mb-2 text-[#DE946E]  group-hover:text-white 
+      className="text-[16px] font-bold mb-2 text-[#DE946E]   group-hover:text-white group-active:text-white
  "
     >
       {children}
