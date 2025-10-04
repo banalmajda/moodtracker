@@ -1,19 +1,26 @@
-export default function IconReason({ children }) {
+// src/icons/IconReason.jsx
+
+// Menerima prop isActive
+export default function IconReason({ children, isActive }) {
+  // Kelas dasar
+  const baseClasses = `w-[50px] h-[50px] flex items-center justify-center 
+    rounded-lg mb-4 transition-all duration-300`;
+
+  // Kelas untuk gaya aktif (latar putih, teks oranye)
+  const activeClasses = "bg-white text-[#DE946E]";
+
+  // Kelas untuk gaya default (latar hijau muda, teks hijau tua) + gaya hover/focus group
+  const defaultClasses = `bg-[#D8E8DB] text-[#1D493C] 
+    group-hover:bg-white 
+    group-hover:text-[#DE946E] 
+    group-active:bg-white 
+    group-active:text-[#DE946E] 
+    group-focus:bg-white 
+    group-focus:text-[#DE946E]`;
+
   return (
     <div
-      className="w-[50px] h-[50px] bg-[#D8E8DB] flex items-center justify-center 
-      rounded-lg mb-4 text-[#1D493C] 
-      
-      /* Gaya untuk Background */
-      group-hover:bg-white 
-      group-active:bg-white  /* ✅ Aktif saat disentuh/tekan di mobile */
-      group-focus:bg-white   /* ✅ Aktif setelah ketukan pertama di mobile */
-
-      /* Gaya untuk Text Color */
-      group-hover:text-[#DE946E] 
-      group-active:text-[#DE946E] /* ✅ Aktif saat disentuh/tekan di mobile */
-      group-focus:text-[#DE946E]  /* ✅ Aktif setelah ketukan pertama di mobile */
-      "
+      className={`${baseClasses} ${isActive ? activeClasses : defaultClasses}`}
     >
       {children}
     </div>
