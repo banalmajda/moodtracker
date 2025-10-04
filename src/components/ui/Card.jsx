@@ -4,7 +4,7 @@ export function Card({ children, className }) {
       className={`group bg-white w-full min-h-[300px] justify-start flex flex-col 
       rounded-lg p-6 shadow  hover:bg-[#DE946E] hover:text-[#fff] 
         active:bg-[#DE946E] active:text-[#fff]
-        focus:bg-[#DE946E] focus:text-[#fff] transition-all duration-300 
+        focus:bg-[#DE946E] focus:text-[#fff] transition
       cursor-pointer  text-gray-800 ${className}`}
     >
       {children}

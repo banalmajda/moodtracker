@@ -68,7 +68,7 @@ const Slider = () => {
         <div className="relative w-full flex flex-col justify-between rounded-2xl shadow-xl p-6 my-8">
           {/* Container Slide */}
           <div className="w-full h-full flex items-center justify-center p-4">
-            <div className="text-center transition-opacity duration-700 ease-in-out">
+            <div className="text-center h-[300px] transition-opacity duration-700 ease-in-out">
               <div className="flex justify-center mb-4">
                 {slidesData[currentSlide].icon}
               </div>
