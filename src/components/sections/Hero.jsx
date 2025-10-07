@@ -39,22 +39,20 @@ const SliderSkeleton = () => {
 // ------------------------------------
 
 const Slider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [apiSlidesData, setApiSlidesData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // State baru untuk mengontrol class transisi
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0); // State untuk slide saat ini
+  const [apiSlidesData, setApiSlidesData] = useState([]); // State untuk menampung data dari API
+  const [loading, setLoading] = useState(true); // State untuk menandai loading data
+  const [error, setError] = useState(null); // State untuk menampung error
+  const [isTransitioning, setIsTransitioning] = useState(false); // State baru untuk mengontrol class transisi
 
   // Fungsi untuk mengganti slide dengan transisi (Memperbaiki Warning dengan useCallback)
   // currentSlide ditambahkan sebagai dependency agar nextIndex bisa membandingkan dengan nilai terbaru
   const handleSlideChange = useCallback(
     (newSlideIndex) => {
       const nextIndex =
-        typeof newSlideIndex === "function"
-          ? newSlideIndex(currentSlide)
-          : newSlideIndex;
+        typeof newSlideIndex === "function" // Kondisi (Cek apakah inputnya adalah sebuah fungsi)
+          ? newSlideIndex(currentSlide) // <-- Nilai Jika BENAR (Jika inputnya fungsi, jalankan fungsi itu)
+          : newSlideIndex; // <-- Nilai Jika SALAH (Jika inputnya angka, langsung pakai angka itu)
 
       if (nextIndex === currentSlide) return; // Hindari transisi jika index sama
 
