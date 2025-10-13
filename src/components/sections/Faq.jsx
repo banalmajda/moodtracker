@@ -33,6 +33,21 @@ const faqData = [
   },
 ];
 
+function markdownToHtml(text) {
+  // 1. Mengubah **Teks** menjadi <strong>Teks</strong> (Bold)
+  let htmlText = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+  // 2. Mengubah *Teks* menjadi <em>Teks</em> (Italic)
+  htmlText = htmlText.replace(/\*(.*?)\*/g, "<em>$1</em>");
+  return htmlText;
+}
+
+// ⬅️ PRAPROSES DATA DI SINI
+const formattedFaqData = faqData.map((faq) => ({
+  ...faq,
+  answerHtml: markdownToHtml(faq.answer), // Membuat properti baru yang sudah HTML
+}));
+
 export default function Faq() {
   // Hanya menggunakan satu state untuk melacak item mana yang terbuka
   const [openItemId, setOpenItemId] = useState(null);
@@ -55,11 +70,11 @@ export default function Faq() {
 
         {/* Daftar FAQ - Menggunakan data statis */}
         <div className="faq-list border border-gray-200 rounded-lg overflow-hidden">
-          {faqData.map((faq) => (
+          {formattedFaqData.map((faq) => (
             <FaqItem
               key={faq.id}
               question={faq.question}
-              answer={faq.answer}
+              answer={faq.answerHtml} // Gunakan properti baru yang sudah diformat
               // Tentukan apakah item ini terbuka atau tidak
               isOpen={openItemId === faq.id}
               onClick={() => handleToggle(faq.id)}

@@ -42,9 +42,10 @@ export default function FaqItem({ question, answer, isOpen, onClick }) {
         className="overflow-hidden transition-max-height duration-500 ease-in-out"
         style={{ maxHeight: isOpen ? "250px" : "0" }}
       >
-        <p className="p-5 text-gray-600 leading-relaxed bg-gray-50 border-t border-gray-200">
-          {answer}
-        </p>
+        <p
+          className="p-5 text-gray-600 leading-relaxed bg-gray-50 border-t border-gray-200"
+          dangerouslySetInnerHTML={{ __html: answer }}
+        ></p>
       </div>
     </div>
   );
