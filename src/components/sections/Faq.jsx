@@ -83,8 +83,8 @@ export default function Faq() {
         </div>
 
         <p className="mt-8 text-sm text-center text-gray-400 italic">
-          **Catatan Penting:** Data FAQ ini dimuat secara statis dan tidak
-          menggunakan Local Storage.
+          <span className="font-semibold">Catatan Penting:</span> Data FAQ ini
+          dimuat secara statis dan tidak menggunakan Local Storage.
         </p>
       </div>
     </div>
