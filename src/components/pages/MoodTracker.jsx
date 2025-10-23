@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MainLayout from "../layout/MainLayout.jsx";
+import MoodChart from "../sections/Chart.jsx";
 
 // Data dummy untuk riwayat mood
 const initialHistory = []; // Mulai dengan array kosong
@@ -120,6 +121,32 @@ const MoodTracker = () => {
   const sortedMoods = allMoodsWithCounts.sort((a, b) => b.count - a.count);
   // Sort mood counts from highest to lowest
 
+  const totalEntries = filteredHistory.length;
+  const chartData = allMoodsWithCounts.map((mood) => {
+    const colorTailwind = emotionColors[mood.emotion]; // e.g., 'bg-yellow-300' // Ambil hanya kode warna, karena recharts membutuhkan kode hex/nama warna, bukan kelas Tailwind.
+    // Karena Anda menggunakan Tailwind, untuk sementara kita akan memetakan kelas ke warna dasar,
+    // tetapi yang terbaik adalah menggunakan map warna terpisah dengan nilai HEX.
+    let colorHex = "#ccc"; // Default abu-abu
+    if (colorTailwind.includes("yellow"))
+      colorHex = "#fcd34d"; // Tailwind yellow-300
+    else if (colorTailwind.includes("lime"))
+      colorHex = "#a3e635"; // Tailwind lime-300
+    else if (colorTailwind.includes("gray"))
+      colorHex = "#9ca3af"; // Tailwind gray-400
+    else if (colorTailwind.includes("sky"))
+      colorHex = "#38bdf8"; // Tailwind sky-400
+    else if (colorTailwind.includes("red"))
+      colorHex = "#fca5a5"; // Tailwind red-300
+    else if (colorTailwind.includes("orange")) colorHex = "#fb923c"; // Tailwind orange-400
+
+    return {
+      ...mood,
+      percentage:
+        totalEntries > 0 ? ((mood.count / totalEntries) * 100).toFixed(1) : 0,
+      color: colorHex, // Gunakan warna hex untuk recharts
+    };
+  });
+
   // Generate month and year options
   const months = [
     "January",
@@ -167,7 +194,6 @@ const MoodTracker = () => {
                 .replace(/\//g, "-")}
             </span>
           </div>
-
           {/* Mood Input Section */}
           <div className="flex justify-between">
             {/* Container yang membungkus semua emoji */}
@@ -213,7 +239,6 @@ const MoodTracker = () => {
               ))}
             </div>
           </div>
-
           {/* Note Section */}
           <div className="mb-6">
             <h2 className="text-lg font-semibold text-gray-600 mb-2">Note</h2>
@@ -224,7 +249,6 @@ const MoodTracker = () => {
               onChange={(e) => setNote(e.target.value)}
             />
           </div>
-
           {/* Submit Button */}
           <button
             className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200"
@@ -232,7 +256,6 @@ const MoodTracker = () => {
           >
             Submit
           </button>
-
           {/* Filter and Overview Section */}
           <div className="mt-8">
             <h2 className="text-lg font-semibold text-gray-600 mb-4">
@@ -287,7 +310,39 @@ const MoodTracker = () => {
               </div>
             </div>
           </div>
+          {/* Mood Chart Section - PERBAIKAN TATA LETAK */}
+          {/* Hapus h-full yang tidak perlu. Gunakan p-6/p-8 untuk padding besar. */}
 
+          <div className="mt-6 mb-8 p-4 border rounded-lg bg-green-100 shadow-md">
+            <h2 className="text-lg font-semibold text-blue-600 mb-2">
+              Mood Distribution Chart
+            </h2>
+            {/* Kontainer Chart: Beri ruang yang cukup dan hapus tinggi tetap yang membatasi */}
+
+            <div className="w-full h-48 md:h-56 mb-4">
+              <MoodChart data={chartData} totalEntries={totalEntries} />
+            </div>
+            {/* Legenda Manual Dibuat di Sini untuk Penempatan yang Rapi (Hapus legenda di MoodChart.jsx) */}
+
+            <div className="w-full mt-2 pt-2 border-t border-green-200 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm">
+              {chartData
+                .filter((mood) => mood.count > 0) // Hanya tampilkan mood yang benar-benar ada
+                .map((mood) => (
+                  <div key={mood.emotion} className="flex items-center">
+                    {/* Kotak Warna/Indikator */}
+                    <span
+                      className="w-3 h-3 rounded-full mr-2 shadow-sm"
+                      style={{ backgroundColor: mood.color }}
+                    ></span>
+                    {/* Teks Legenda */}
+                    <span className="text-gray-700 font-medium whitespace-nowrap">
+                      {mood.emotion}: {mood.percentage}%
+                    </span>
+                  </div>
+                ))}
+            </div>
+          </div>
+          {/* End Mood Chart Section */}
           {/* Mood History Table */}
           <div className="mt-4">
             <div className="overflow-x-auto">
