@@ -5,7 +5,7 @@
 export function Card({ children, className, isActive, onClick }) {
   // Kelas dasar (base classes)
   const baseClasses = `group bg-white hover:bg-[#DE946E] w-full min-h-[300px] justify-start flex flex-col 
-    rounded-lg p-6 shadow transition-all duration-300 cursor-pointer text-gray-800 ${className}`;
+    rounded-lg p-6 shadow transition-all duration-300  text-gray-800 ${className}`;
 
   // Kelas untuk gaya aktif/hover: Latar belakang oranye & Teks putih
   // Pastikan warna Latar Belakang (bg-[#DE946E]) ada di sini!
