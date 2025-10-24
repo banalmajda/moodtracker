@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MainLayout from "../layout/MainLayout.jsx";
 import MoodChart from "../sections/Chart.jsx";
+import Swal from "sweetalert2";
 
 // Data dummy untuk riwayat mood
 const initialHistory = []; // Mulai dengan array kosong
@@ -61,7 +62,12 @@ const MoodTracker = () => {
 
   const handleSubmit = () => {
     if (!selectedEmotion || !note) {
-      alert("Please select an emotion and write a note.");
+      Swal.fire({
+        title: "Error!",
+        text: "Please select an emotion and write a note.",
+        icon: "error",
+        confirmButtonText: "Oke",
+      });
       return;
     }
 
