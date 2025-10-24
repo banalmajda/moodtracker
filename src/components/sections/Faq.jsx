@@ -8,28 +8,28 @@ import FaqItem from "../ui/FaqItem.jsx";
 const faqData = [
   {
     id: 1,
-    question:
-      "Apakah saya harus login untuk bisa menggunakan web Mood Tracking ini?",
+    question: "Do I have to log in to use this Mood Tracking web application?",
     answer:
-      "Tentu saja **Tidak**. Aplikasi ini dirancang untuk kemudahan dan kecepatan. Anda bisa langsung mulai mencatat suasana hati Anda tanpa perlu proses registrasi atau *login*. Data Anda akan langsung disimpan di browser Anda.",
+      "Of course, **No**. This application is designed for ease and speed. You can start recording your mood immediately without needing a registration or *login* process. Your data will be saved directly in your browser.",
   },
   {
     id: 2,
-    question: "Di mana data suasana hati saya disimpan?",
+    question: "Where is my mood data stored?",
     answer:
-      "Data suasana hati Anda disimpan langsung di **Local Storage** browser web yang Anda gunakan. Artinya, data Anda **tersimpan aman secara lokal** di perangkat Anda sendiri dan tidak dikirim ke server eksternal.",
+      "Your mood data is stored directly in the **Local Storage** of the web browser you are using. This means your data is **securely stored locally** on your own device and is not sent to an external server.",
   },
   {
     id: 3,
-    question: "Apa kelebihan dan kekurangan menggunakan Local Storage?",
+    question:
+      "What are the advantages and disadvantages of using Local Storage?",
     answer:
-      "**Kelebihan:** Cepat, *offline-friendly*, dan tidak butuh *server*. **Kekurangan:** Data tidak bisa disinkronkan antar perangkat (hanya ada di satu browser) dan bisa hilang jika Anda menghapus data browser.",
+      "**Advantages:** Fast, *offline-friendly*, and requires no *server*. **Disadvantages:** Data cannot be synchronized across devices (it only exists in one browser) and can be lost if you clear your browser data.",
   },
   {
     id: 4,
-    question: "Bagaimana cara kerja fitur Mood Tracking ini?",
+    question: "How does this Mood Tracking feature work?",
     answer:
-      "Anda cukup memilih kategori suasana hati Anda saat ini dan menambahkan catatan singkat. Aplikasi akan menyimpan *log* ini di Local Storage, dan Anda bisa melihat riwayat atau statistik suasana hati Anda kapan saja selama menggunakan browser yang sama.",
+      "You simply select your current mood category and add a brief note. The application will save this *log* in Local Storage, and you can view your mood history or statistics anytime as long as you use the same browser.",
   },
 ];
 
@@ -62,10 +62,10 @@ export default function Faq() {
     <div className="min-h-screen bg-gray-50 p-6 md:p-12">
       <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-xl p-6 md:p-10 border border-[#1D493C]">
         <h1 className="text-4xl font-extrabold text-center text-[#1D493C]">
-          Pusat Bantuan
+          Help Center
         </h1>
         <p className="text-center text-gray-500 mb-10 text-lg">
-          Semua yang perlu Anda tahu tentang cara kerja website ini.
+          Everything you need to know about how this website works.
         </p>
 
         {/* Daftar FAQ - Menggunakan data statis */}
@@ -81,11 +81,6 @@ export default function Faq() {
             />
           ))}
         </div>
-
-        <p className="mt-8 text-sm text-center text-gray-400 italic">
-          <span className="font-semibold">Catatan Penting:</span> Data FAQ ini
-          dimuat secara statis dan tidak menggunakan Local Storage.
-        </p>
       </div>
     </div>
   );
